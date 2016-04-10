@@ -1,0 +1,24 @@
+* ob-fsharp
+
+** supported header arguments
+
+- session
+
+** examples
+
+: #+BEGIN_SRC fsharp :session fib
+: let rec fib = function
+:    | n when n=0 -> 0
+:    | n when n=1 -> 1
+:    | n -> fib(n - 1) + fib(n - 2)
+: #+END_SRC
+
+: #+RESULTS:
+: : val fib : _arg1:int -> int
+
+: #+BEGIN_SRC fsharp :session fib
+: List.map fib [1..9]
+: #+END_SRC
+
+: #+RESULTS:
+: : val it : int list = [1; 1; 2; 3; 5; 8; 13; 21; 34]
