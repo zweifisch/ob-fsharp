@@ -60,11 +60,12 @@
   (let ((name (format "*ob-fsharp-%s*" session)))
     (setq ob-fsharp-process-output "")
     (process-send-string name (format "%s;;\n\"%s\";;\n" body ob-fsharp-eoe))
+    (process-send-eof name)
     (accept-process-output (get-process name) nil nil 1)
     (ob-fsharp--wait ob-fsharp-eoe)
     (string-trim
      (replace-regexp-in-string
-      (format "^> val it : string = \"%s\"\n> " ob-fsharp-eoe) "" ob-fsharp-process-output))))
+      (format "^> val it : string = \"%s\"[^z-a]+> " ob-fsharp-eoe) "" ob-fsharp-process-output))))
 
 
 (provide 'ob-fsharp)
