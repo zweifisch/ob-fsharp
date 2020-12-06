@@ -60,6 +60,7 @@
   (let ((name (format "*ob-fsharp-%s*" session)))
     (setq ob-fsharp-process-output "")
     (process-send-string name (format "%s;;\n\"%s\";;\n" body ob-fsharp-eoe))
+    (process-send-eof name)
     (accept-process-output (get-process name) nil nil 1)
     (ob-fsharp--wait ob-fsharp-eoe)
     (string-trim
